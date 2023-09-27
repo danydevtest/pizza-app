@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Contactos from "../pages/Contactos";
 import FormEmpleados from "../componentes/formularios/FormEmpleados";
 import FormProductos from "../componentes/formularios/productos/FormProductos";
+import ListarEmpleados from "../componentes/formularios/ListarEmpleados";
 import NotFound from "../pages/NotFound";
 //Layout
 import Layout from "../layout/Layout";
@@ -20,6 +21,7 @@ function Rutas() {
         <Route path="/contactos" element={<Contactos/>}/>
         <Route path="/fempleado" element={<FormEmpleados/>}/>
         <Route path="/fproducto" element={<FormProductos/>}/>
+        <Route path="/listarem" element={<ListarEmpleados/>}/>
         <Route path="*" element={<NotFound/>}/>       
       </Routes>
       </Layout>

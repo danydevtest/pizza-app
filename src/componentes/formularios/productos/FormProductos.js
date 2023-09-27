@@ -1,8 +1,14 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
+import Axios from "../../../services/Axios";
+
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./FormProductos.form";
 
 function FormProductos() {
+
+  const [productos, setProductos]=useState([]);
+
+
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
@@ -11,6 +17,18 @@ function FormProductos() {
       console.log(formValue);
     },
   });
+
+const consultarProductos=async()=>{
+  const productos=await Axios.get("");
+  setProductos(productos.data);
+  console.log(productos.data);
+}
+
+useEffect(() => {
+  //consultarProductos();
+}, [])
+
+
 
   return (
     <div class="card">
