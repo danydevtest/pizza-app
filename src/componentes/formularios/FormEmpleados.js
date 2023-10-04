@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Axios from "../../services/Axios";
+import {useParams, useNavigate} from "react-router-dom";
 
 function FormEmpleados() {
 
   const initialState = {
+    id:"",
     nombre: "",
     correo: "",
     descripcion: "",
   };
 
   const [values, setValues] = useState(initialState);
+  const [datos, setDatos]=useState([]);
+const params=useParams();
+const navigate=useNavigate();
+ 
 
   const obtenerValue = (e) => {
     const {name, value} = e.target;
@@ -23,10 +29,36 @@ function FormEmpleados() {
 
   }
 
+  const obtnerEmpleado=async()=>{
+    const buscar=await Axios.get(`/empleado/getEmpleado/${params.id}`);
+    setValues(buscar.data);
+    //console.log(buscar.data);
+  }
+
+ const updateEmpleado=async()=>{
+  await Axios.patch(`/empleado/updateEmpleado/${params.id}`,values).then(
+    ()=>{
+      console.log("Datos actualizados correctamente");
+    }
+  )
+navigate("/listarem")
+ }
+
   const Enviar = (e) => {
     e.preventDefault();
-    GuardarEmpleado();
+    if(values.id===""){
+      GuardarEmpleado();
+    }else{
+      updateEmpleado();
+    }
+    
   };
+
+  
+  useEffect(() => {
+    obtnerEmpleado(params.id);
+  }, [])
+  
 
   return (
     
@@ -75,7 +107,7 @@ function FormEmpleados() {
             </div>
             <div class="col-12">
               <button type="submit" class="btn btn-primary" >
-                Enviar
+                {values.id===""?"Guardar":"Actualizar"}
               </button>
             </div>
           </form>

@@ -20,6 +20,7 @@ function Rutas() {
         <Route path="/" element={<Home />} />
         <Route path="/contactos" element={<Contactos/>}/>
         <Route path="/fempleado" element={<FormEmpleados/>}/>
+        <Route path="/fempleado/:id" element={<FormEmpleados/>}/>
         <Route path="/fproducto" element={<FormProductos/>}/>
         <Route path="/listarem" element={<ListarEmpleados/>}/>
         <Route path="*" element={<NotFound/>}/>       

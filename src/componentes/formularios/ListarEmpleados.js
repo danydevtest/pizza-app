@@ -1,14 +1,28 @@
 import React, { useState, useEffect } from "react";
 import Axios from "../../services/Axios";
+import {useNavigate} from "react-router-dom";
 
 function ListarEmpleados() {
   const [empleados, setEmpleados] = useState([]);
+
+  const navigate=useNavigate();
+
+ 
 
   const consultarEmpleados = async () => {
     const consultar = await Axios.get("/empleado/getEmpleados");
     setEmpleados(consultar.data);
     console.log(consultar.data);
   };
+
+  const deleteEmpleado=async(id)=>{
+    if(window.confirm("¿Esta seguro de eliminar el dato?")){
+     const eliminar= await Axios.delete(`/empleado/deleteEmpleado/${id}`);
+     console.log("Se eliminó el dato", eliminar);
+    }  
+consultarEmpleados();
+    
+  }
 
   useEffect(() => {
     consultarEmpleados();
@@ -36,8 +50,8 @@ function ListarEmpleados() {
                       <td>{empleado.nombre}</td>
                       <td>{empleado.correo}</td>
                       <td>{empleado.descripcion}</td>
-                      <td><button type="button" class="btn btn-info"><i class="bi bi-pencil-fill"></i></button></td>
-                      <td><button type="button" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button></td>
+                      <td><button type="button" class="btn btn-info" onClick={()=>navigate(`/fempleado/${empleado._id}`)}><i class="bi bi-pencil-fill"></i></button></td>
+                      <td><button type="button" class="btn btn-danger" onClick={()=>deleteEmpleado(empleado._id)}><i class="bi bi-trash-fill"></i></button></td>
                     </tr>
                     
                   </tbody>
