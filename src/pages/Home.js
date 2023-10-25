@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {imagenes} from "../imagenes"
 
 function Home() {
 
@@ -11,7 +12,7 @@ function Home() {
     <div className="row p-4">
     <div className="col-xs-12 col-sm-6 col-md-3 p-2">
     <div className="card">
-      <img src="" class="card-img-top" alt="..." />
+      <img src={imagenes.mole} class="card-img-top" alt="..." />
       <div className="card-body">
         <h5 className="card-title">Card title</h5>
         <p className="card-text">
@@ -26,7 +27,7 @@ function Home() {
   </div>
   <div className="col-xs-12 col-sm-6 col-md-3 p-2">
     <div className="card">
-      <img src="..." class="card-img-top" alt="..." />
+      <img src={imagenes.tacos} class="card-img-top" alt="..." />
       <div className="card-body">
         <h5 className="card-title">Card title</h5>
         <p className="card-text">
@@ -56,7 +57,7 @@ function Home() {
   </div>
   <div className="col-xs-12 col-sm-6 col-md-3 p-2">
     <div className="card">
-      <img src="..." className="card-img-top" alt="..." />
+      <img src={imagenes.burritos} className="card-img-top" alt="..." />
       <div className="card-body">
         <h5 className="card-title">Card title</h5>
         <p className="card-text">
